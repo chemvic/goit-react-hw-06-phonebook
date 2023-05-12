@@ -1,17 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import {changeFilter} from '../../redux/filterSlice';
 import css from "./Filter.module.css";
 
-const Filter =({value, onQuery})=>{
-
-        
+const Filter =()=>{
+    const dispatch = useDispatch();
+     
     return(
         <label className={css.filter_lable}>
             <span>Find contacts by name or number</span>
         <input className={css.filter_input}
         type="text" 
-        value={value}
-        onChange={onQuery}
+        onChange={(event) => {
+            dispatch(changeFilter(event.target.value));
+          }}
         placeholder='Enter name or number for search ...'
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters,
@@ -22,10 +24,4 @@ const Filter =({value, onQuery})=>{
     )
 
 }
-
-Filter.propTypes = {
-    onQuery: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired
-    }
-
 export default Filter;
