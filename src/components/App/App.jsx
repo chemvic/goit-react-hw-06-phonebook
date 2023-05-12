@@ -1,52 +1,48 @@
 import useLocalStorage from '../../hooks/useLocalStorage';
-import { useState } from 'react';
+// import { useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
 import ContactForm from "../ContactForm";
 import  Filter from "../Filter";
 import ContactList from "../ContactList";
 
 const App =()=> {
+// const dispatch=useDispatch();
+// const contacts=useSelector(state=>state.contacts);
 
-  const[filter, setFilter] = useState('');
-  const[contacts, setContacts] = useLocalStorage('contacts', [
-      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-    ]);
 
-  const formSubmitHandler=(newContact)=>{
+//   const formSubmitHandler=(newContact)=>{
    
-    if(contacts
-			.find(({name, number}) => name.toLowerCase()===(newContact.name.toLowerCase())||number===newContact.number)){
-        alert(`${newContact.name} is already in contacts.`);
-        return;
-      }   
+//     if(contacts
+// 			.find(({name, number}) => name.toLowerCase()===(newContact.name.toLowerCase())||number===newContact.number)){
+//         alert(`${newContact.name} is already in contacts.`);
+//         return;
+//       }   
 
-setContacts([...contacts, newContact])
+// // setContacts([...contacts, newContact])
 
-  }
+//   }
 
-  const onDeleteContact=(contactId)=>{
-        setContacts(contacts.filter(contact=>contact.id!==contactId));
+//   const onDeleteContact=(contactId)=>{
+//         setContacts(contacts.filter(contact=>contact.id!==contactId));
 
-      };
+//       };
 
-     const changeFilter = (event) => {
-        setFilter( event.currentTarget.value );
-      };
+//      const changeFilter = (event) => {
+//         setFilter( event.currentTarget.value );
+//       };
    
 
-  const getFilteredContacts = () =>{
+//   const getFilteredContacts = () =>{
    
-    return contacts
-			.filter(({name, number}) => name.toLowerCase().includes(filter.toLowerCase())||number.includes(filter));      
-  }
+//     return contacts
+// 			.filter(({name, number}) => name.toLowerCase().includes(filter.toLowerCase())||number.includes(filter));      
+//   }
 
 
 	
    
     
-    const filteredContacts=getFilteredContacts();
+//     const filteredContacts=getFilteredContacts();
     
 
       return (
@@ -58,14 +54,14 @@ setContacts([...contacts, newContact])
     > 
     <h1 className="title">Phonebook</h1>
 
-    <ContactForm onSubmitHandler={formSubmitHandler}/>
+    <ContactForm />
      
     <h2 className="title">Contacts</h2>
-       
-      <Filter value={filter} onQuery={changeFilter} />
+       <ContactList/>
+      {/* <Filter value={filter} onQuery={changeFilter} />
 
       {filteredContacts.length>0 ? <ContactList contacts={filteredContacts} onDelete={onDeleteContact}/> 
-      :<p>There is no contacts by query</p>}    
+      :<p>There is no contacts by query</p>}     */}
 
     </div>
   );

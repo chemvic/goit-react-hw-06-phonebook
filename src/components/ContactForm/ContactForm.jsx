@@ -1,13 +1,14 @@
 import {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import {addContact} from '../../redux/contactsSlice';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
 import css from "./ContactForm.module.css";
 
 
-const ContactForm =({onSubmitHandler})=>{
+const ContactForm =()=>{
 const[name,setName]=useState('');
 const[number,setNumber]=useState('');
-
+const dispatch = useDispatch();
 
 const handleInputChange=({ target: { name, value } }) => {
   
@@ -23,7 +24,6 @@ const handleInputChange=({ target: { name, value } }) => {
     }
 };
 
-
 const handleSubmit = (event) => {   
 		  event.preventDefault();     
      
@@ -32,8 +32,7 @@ const handleSubmit = (event) => {
         number,
         id: nanoid()
       } 
-
-      onSubmitHandler(newContact);
+      dispatch(addContact(newContact));
        reset();
 }
 
@@ -52,7 +51,6 @@ setNumber('');
 type="text"
 name="name"
 value={name}
-id= {123}
 onChange={handleInputChange}
 placeholder='Enter name...'
 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -82,10 +80,4 @@ required
   </div>
 );
 }
-
-
-ContactForm.propTypes = {
-  onSubmitHandler: PropTypes.func.isRequired
-  }
-
 export default ContactForm;
