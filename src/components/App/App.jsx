@@ -1,23 +1,14 @@
 import { useSelector } from 'react-redux';
-import { getContacts, getFilter } from '../../redux/selectors';
+import { getFilteredContacts } from '../../redux/selectors';
 import ContactForm from "../ContactForm";
 import  Filter from "../Filter";
 import ContactList from "../ContactList";
 
 const App =()=> {
 
-const contacts = useSelector(getContacts);
-const filter = useSelector(getFilter);
 
-  const getFilteredContacts = () =>{
-   
-    return contacts
-			.filter(({name, number}) =>
-       name.toLowerCase().includes(filter.toLowerCase())
-       ||number.includes(filter));    
-     } 
     
-    const filteredContacts=getFilteredContacts();    
+    const filteredContacts=useSelector(getFilteredContacts);    
 
       return (
     <div
@@ -33,7 +24,7 @@ const filter = useSelector(getFilter);
     <h2 className="title">Contacts</h2>
       
       <Filter />
-      {filteredContacts.length>0 ? <ContactList contacts={filteredContacts}/> 
+      {filteredContacts.length>0 ? <ContactList/> 
       :<p>There is no contacts by query</p>}    
 
     </div>
