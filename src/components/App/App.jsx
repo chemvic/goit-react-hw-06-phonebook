@@ -1,4 +1,3 @@
-import useLocalStorage from '../../hooks/useLocalStorage';
 import { useSelector } from 'react-redux';
 import { getContacts, getFilter } from '../../redux/selectors';
 import ContactForm from "../ContactForm";

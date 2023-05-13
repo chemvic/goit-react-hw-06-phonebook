@@ -8,12 +8,12 @@ const Contact=({name, number, id})=>{
     const dispatch = useDispatch();
 
     return(
-        <>  
+       
               <li className={css.contact_item}>{name}: {number}
               <button type="button" className={css.button} onClick={() => dispatch(removeContact(id))}>Delete</button>
               </li>
               						
-        </>
+        
  
     )
 }
