@@ -34,7 +34,8 @@ const handleSubmit = (event) => {
         id: nanoid()
       } 
       if(contacts
-        			.find(({name, number}) => name.toLowerCase()===(newContact.name.toLowerCase())||number===newContact.number)){
+        			.find(({name, number}) => name.toLowerCase()===(newContact.name.toLowerCase())
+              ||number===newContact.number)){
                 alert(`${newContact.name} is already in contacts.`);
                 reset();
                 return;

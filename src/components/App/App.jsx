@@ -12,12 +12,12 @@ const filter = useSelector(getFilter);
   const getFilteredContacts = () =>{
    
     return contacts
-			.filter(({name, number}) => name.toLowerCase().includes(filter.toLowerCase())||number.includes(filter));      
-  }
-  
+			.filter(({name, number}) =>
+       name.toLowerCase().includes(filter.toLowerCase())
+       ||number.includes(filter));    
+     } 
     
-    const filteredContacts=getFilteredContacts();
-    
+    const filteredContacts=getFilteredContacts();    
 
       return (
     <div

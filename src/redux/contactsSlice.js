@@ -9,9 +9,6 @@ const initialState={
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'}],
    };
 
-
-
-
 const contactsSlice = createSlice({
     name: 'contacts',
     initialState,
@@ -27,7 +24,7 @@ const contactsSlice = createSlice({
 
   const persistConfig = {
     key: 'contacts',
-    storage,
+    storage
   }
    
   export const persistedContactsReducer = persistReducer(
